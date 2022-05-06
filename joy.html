@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>youtube</title>
+    <link rel="stylesheet" href="./css/joy.css">
+</head>
+<body>
+    <div class="player_content">
+        <div id="player"></div>
+        <div class="select">
+            <button id="play">再生</button>
+            <button id="pause">一時停止</button>
+            <button id="prev">1分前へ</button>
+            <button id="next">1分先へ</button>
+            <button id="volup">音量アップ</button>
+            <button id="voldown">音量ダウン</button>
+            <button id="mute">ミュート</button>
+            <button id="back">戻る</button>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // IFrame Player API の読み込み
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // YouTubeの埋め込み
+        function onYouTubeIframeAPIReady() {
+            ytPlayer = new YT.Player(
+                'player', // 埋め込む場所の指定
+                {
+                    width: 450, // プレーヤーの幅
+                    height: 240, // プレーヤーの高さ
+                    videoId: '-1p-V-u-Rf8', // YouTubeのID
+                    // イベントの設定
+                    events: {
+                        'onReady': onPlayerRaddy, // プレーヤーの準備ができたときに実行
+                    }
+                }
+            );
+        }
+        // 各ボタンクリック時の処理
+        $(function () {
+            // 再生
+            $('#play').click(function () {
+                ytPlayer.playVideo();               
+            });
+            // 一時停止
+            $('#pause').click(function () {
+                ytPlayer.pauseVideo();    
+            });
+            // 1分前へ
+            $('#prev').click(function () {
+                // 現在の再生時間取得
+                var currentTime = ytPlayer.getCurrentTime();
+                // シークバーの移動
+                ytPlayer.seekTo(currentTime - 60);                
+            });
+            // 1分先へ
+            $('#next').click(function () {
+                // 現在の再生時間取得
+                var currentTime = ytPlayer.getCurrentTime();
+                // シークバーの移動
+                ytPlayer.seekTo(currentTime + 60);
+            });
+            // 音量アップ(+10)
+            $('#volup').click(function () {
+                // 現在の音量取得
+                var currentVol = ytPlayer.getVolume();
+                ytPlayer.setVolume(currentVol + 10); 
+            });
+            // 音量ダウン(-10)
+            $('#voldown').click(function () {
+                // 現在の音量取得
+                var currentVol = ytPlayer.getVolume();
+                ytPlayer.setVolume(currentVol - 10);       
+            });
+            // ミュート
+            $('#mute').click(function () {     
+                // ミュートされているかどうか
+                if (ytPlayer.isMuted()) {
+                    // ミュートの解除
+                    ytPlayer.unMute();
+                } else {
+                    // ミュート
+                    ytPlayer.mute();
+                }
+            });
+            // 戻る
+            $('#back').click(function () {
+                window.location.href = 'index.html';
+            })
+        });
+        // プレイヤーの準備ができた時
+        function onPlayerRaddy(event) {
+            // 動画再生
+            event.target.playVideo();
+        }
+        var playerReady = false;
+        // プレーヤーの準備ができたとき
+        function onPlayerReady(event) {
+            playerReady = true;
+        }
+
+
+
+            /* var apikey = '';
+            var ytid = 'Z-UJbyLqioM'; // 動画ID
+
+            var url = 'https://www.googleapis.com/youtube/v3/videos';
+            url += '?part=statistics'; // レスポンスに含める情報を指定
+            url += '&id=' + ytid; // 取得する動画IDを指定
+            url += '&key=' + apikey; // APIキーを指定
+
+            const xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                console.log('レスポンス:', this.response);
+                console.log('再生数:', this.response.items[0].statistics.viewCount);
+            }
+            xhr.open('GET', url);
+            xhr.responseType = 'json';
+            xhr.send(); */
+    </script>
+</body>
+</html>

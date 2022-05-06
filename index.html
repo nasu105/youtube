@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>日々の葛藤</title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+    <div class="background">
+        <div class="content">
+            <div><button id="joy" value="0">喜</button></div>
+            <div><button id="anger" value="1">怒</button></div>
+            <div><button id="pathos" value="2">哀</button></div>
+            <div><button id="enjoyable" value="3">楽</button></div>
+        </div>
+        <div id="results"></div>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        // 結果記録用の配列を準備
+        const joys_results = [];
+        const angers_results = [];
+        const pathoss_results = [];
+        const enjoyables_results = [];
+        // 変数名(value)の指定
+        const joys = document.getElementById('joy')
+        const angers = document.getElementById('anger')
+        const pathoss = document.getElementById('pathoss')
+        const enjoyables = document.getElementById('enjoyable')
+
+        
+        $('#joy').on('click',function(e){    
+            joys_results.push('joys_ok');
+            console.log(joys_results);
+            const jsonData_joys = JSON.stringify(joys_results);
+            console.log(jsonData_joys);
+            localStorage.setItem('memo1',jsonData_joys);
+            window.location.href = 'joy.html';
+            
+        });
+        $('#anger').on('click',function(){
+            angers_results.push('anger_ok');
+            console.log(angers_results);
+            const jsonData_angers = JSON.stringify(angers_results);
+            console.log(jsonData_angers);
+            localStorage.setItem('memo2', jsonData_angers);
+            window.location.href = 'anger.html';
+        });
+        $('#pathos').on('click',function(){
+            pathoss_results.push('pathos_ok');
+            console.log(pathoss_results);
+            const jsonData_pathoss = JSON.stringify(pathoss_results);
+            console.log(jsonData_pathoss);
+            localStorage.setItem('memo3', jsonData_pathoss);
+            window.location.href = 'pathos.html';
+        });
+        $('#enjoyable').on('click',function(){
+            enjoyables_results.push('enjoyable_ok');
+            console.log(enjoyables_results);
+            const jsonData_enjoyables = JSON.stringify(enjoyables_results);
+            console.log(jsonData_enjoyables);
+            localStorage.setItem('memo4', jsonData_enjoyables);
+            window.location.href = 'enjoyable.html';
+        });
+
+    </script>
+
+
+</body>
+
+
+</html>

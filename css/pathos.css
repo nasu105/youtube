@@ -1,0 +1,19 @@
+.player_content{
+    height: 100%;
+    margin-top: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+body{
+    position: relative;
+    background-image: url(../photo/sorrow.jpg);
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+.select{
+    margin-bottom: 10px;
+}
