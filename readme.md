@@ -1,6 +1,6 @@
 # 心理テスト
 
-[https://nasu105.github.io/psychological_test/index.html](https://nasu105.github.io/psychological_test/index.html)
+[https://nasu105.github.io/youtube/index.html](https://nasu105.github.io/youtube/index.html)
 
 ## プロダクトの紹介
 
